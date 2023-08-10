@@ -1,0 +1,5 @@
+
+mpython:S1542"URename function "requestLocation" to match the regular expression ^[a-z_][a-z0-9_]*$.(ÞÆÆ³
+ppython:S117"YRename this local variable "place_ID" to match the regular expression ^[_a-z][a-z0-9_]*$.(ù‹ø 
+jpython:S1542"RRename function "infoLocation" to match the regular expression ^[a-z_][a-z0-9_]*$.(¤œí°
+opython:S1542&"RRename function "makeDatalist" to match the regular expression ^[a-z_][a-z0-9_]*$.(Ë¿Ç÷ûÿÿÿÿ

@@ -1,6 +1,6 @@
 # Calculate centroid
 
-import centrepoint
+import Centrepoint
 import numpy as np
 
 axis_x = [33.763541543,42.573478754647,35.2412342141234]
