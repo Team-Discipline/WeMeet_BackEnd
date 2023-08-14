@@ -1,11 +1,9 @@
-import requests
-import json
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-import Query
-    
+from question import question_router
+
+
 class Coordinate(BaseModel):
     place_name: str
     axis_x: float
@@ -13,11 +11,13 @@ class Coordinate(BaseModel):
     address: str
     place_url: str
     place_ID: str
-    
+
+
 app = FastAPI()
+app.include_router(question_router.router)
+
 
 @app.get("/maps/{place_name}")
-
 async def get_point(query):
     return {"place_name": Coordinate.place_name,
             "axis_x": Coordinate.axis_x,

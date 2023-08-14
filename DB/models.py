@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, Integer, String, Text, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
 from .database import Base
@@ -12,7 +12,8 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     items = relationship("Item", back_populates="owner")
- 
+
+
 class Item(Base):
     __tablename__ = "items"
 
@@ -35,4 +36,23 @@ class Place(Base):
     place_ID = Column(Integer, primary_key=True, index=True)
     is_active = Column(Boolean, default=True)
 
-    items = relationship("Item", back_populates="owner")    
+    items = relationship("Item", back_populates="owner")
+
+
+class Question(Base):
+    table_name = "question"
+
+    id = Column(Integer, primary_key=True)
+    subject = Column(String, nullable=False)
+    content = Column(Text, nullable=False)
+    create_date = Column(DateTime, nullable=False)
+
+
+class Answer(Base):
+    table_name = "answer"
+
+    id = Column(Integer, primary_key=True)
+    content = Column(Text, nullable=False)
+    create_date = Column(DateTime, nullable=False)
+    question_id = Column(Integer, ForeignKey("question.id"))
+    question = relationship("Question", backref="answers")
