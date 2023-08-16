@@ -1,7 +1,13 @@
+
 from sqlalchemy import Boolean, Column, Integer, String, Text, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
-from .database import Base
+from DB.database import Base, engine
+
+
+def initialize_database():
+    Base.metadata.create_all(bind=engine)
+
 
 class User(Base):
     __tablename__ = "users"
@@ -29,8 +35,8 @@ class Place(Base):
     __tablename__ = "places"
 
     place_name = Column(String)
-    axis_x = Column(float)
-    axis_y = Column(float)
+    # axis_x = Column(float)
+    # axis_y = Column(float)
     address = Column(String)
     place_url = Column(String)
     place_ID = Column(Integer, primary_key=True, index=True)
@@ -40,7 +46,7 @@ class Place(Base):
 
 
 class Question(Base):
-    table_name = "question"
+    __tablename__ = "question"
 
     id = Column(Integer, primary_key=True)
     subject = Column(String, nullable=False)
@@ -49,10 +55,11 @@ class Question(Base):
 
 
 class Answer(Base):
-    table_name = "answer"
+    __tablename__ = "answer"
 
     id = Column(Integer, primary_key=True)
     content = Column(Text, nullable=False)
     create_date = Column(DateTime, nullable=False)
     question_id = Column(Integer, ForeignKey("question.id"))
     question = relationship("Question", backref="answers")
+

@@ -2,8 +2,7 @@ from datetime import datetime
 
 from sqlalchemy.orm import Session
 
-from WeMeet_BackEnd.DB.models import Question
-from WeMeet_BackEnd.question.question_schema import QuestionCreate
+from question.question_schema import Question, QuestionCreate
 
 
 def get_question_list(db: Session, skip: int = 0, limit: int = 10):

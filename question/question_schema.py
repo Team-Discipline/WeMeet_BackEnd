@@ -2,14 +2,14 @@ from datetime import datetime
 
 from pydantic import BaseModel, validator
 
-from WeMeet_BackEnd.DB.models import Answer
+from answer.answer_schema import Answer
 
 
 class Question(BaseModel):
     id: int
     subject: str
     content: str
-    create_date: datetime.datetime
+    create_date: datetime
     answer: list[Answer] = []
 
     class Config:
@@ -20,8 +20,14 @@ class QuestionCreate(BaseModel):
     subject: str
     content: str
 
-    @validator('subject', 'content')
-    def not_empty(self, value):
+    @validator('subject')
+    def not_empty_subject(cls, value):
+        if not value or not value.strip():
+            raise ValueError("빈 값은 허용되지 않습니다.")
+        return value
+
+    @validator('content')
+    def not_empty_content(cls, value):
         if not value or not value.strip():
             raise ValueError("빈 값은 허용되지 않습니다.")
         return value

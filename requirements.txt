@@ -4,8 +4,6 @@ blinker==1.6.2
 click==8.1.6
 exceptiongroup==1.1.2
 fastapi==0.101.0
-Flask==2.3.2
-Flask-SQLAlchemy==3.0.5
 greenlet==2.0.2
 idna==3.4
 itsdangerous==2.1.2
