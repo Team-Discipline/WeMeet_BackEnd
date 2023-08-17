@@ -4,13 +4,15 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
 
 fake_users_db = {
-    "johndoe": {
-        "username": "johndoe",
-        "full_name": "John Doe",
-        "email": "johndoe@example.com",
+    # active 유저
+    "gpkim": {
+        "username": "gpkim",
+        "full_name": "Gang Pyeong Kim",
+        "email": "anjdal713@naver.com",
         "hashed_password": "fakehashedsecret",
         "disabled": False,
     },
+    # inactive 유저
     "alice": {
         "username": "alice",
         "full_name": "Alice Wonderson",
