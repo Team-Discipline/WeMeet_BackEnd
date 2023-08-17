@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from answer import answer_router
 from question import question_router
 
 
@@ -15,6 +16,7 @@ class Coordinate(BaseModel):
 
 app = FastAPI()
 app.include_router(question_router.router)
+app.include_router(answer_router.router)
 
 
 @app.get("/maps/{place_name}")
