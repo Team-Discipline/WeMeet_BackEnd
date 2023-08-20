@@ -1,7 +1,13 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+
+from sqlalchemy import Boolean, Column, Integer, String, Text, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
-from .database import Base
+from DB.database import Base, engine
+
+
+def initialize_database():
+    Base.metadata.create_all(bind=engine)
+
 
 class User(Base):
     __tablename__ = "users"
@@ -12,7 +18,8 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     items = relationship("Item", back_populates="owner")
- 
+
+
 class Item(Base):
     __tablename__ = "items"
 
@@ -28,11 +35,31 @@ class Place(Base):
     __tablename__ = "places"
 
     place_name = Column(String)
-    axis_x = Column(float)
-    axis_y = Column(float)
+    # axis_x = Column(float)
+    # axis_y = Column(float)
     address = Column(String)
     place_url = Column(String)
     place_ID = Column(Integer, primary_key=True, index=True)
     is_active = Column(Boolean, default=True)
 
-    items = relationship("Item", back_populates="owner")    
+    items = relationship("Item", back_populates="owner")
+
+
+class Question(Base):
+    __tablename__ = "question"
+
+    id = Column(Integer, primary_key=True)
+    subject = Column(String, nullable=False)
+    content = Column(Text, nullable=False)
+    create_date = Column(DateTime, nullable=False)
+
+
+class Answer(Base):
+    __tablename__ = "answer"
+
+    id = Column(Integer, primary_key=True)
+    content = Column(Text, nullable=False)
+    create_date = Column(DateTime, nullable=False)
+    question_id = Column(Integer, ForeignKey("question.id"))
+    question = relationship("Question", backref="answers")
+
