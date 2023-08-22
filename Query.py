@@ -1,52 +1,40 @@
+
+from fastapi import FastAPI
+from pydantic import BaseModel
+
 import requests
-import pandas as pd
-import numpy as np
 
-# request to Kakao API from location information (entered by user)
-# gets user-entered information from the Front-End
+import Centroid
 
-def requestLocation(region):
-    url = 'https://dapi.kakao.com/v2/local/search/keyword.json'
-    params = {'query': region}
+class Kakaomap(BaseModel):
+    place_name: str
+    axis_x: float
+    axis_y: float
+    address: str
+    place_url: str
+    place_ID: str
+
+
+class Keyword():
+    url = "https://dapi.kakao.com/v2/local/search/keyword.json"
     headers = {"Authorization": "60f67244349d7ae054b6216815c8431a"}
-    places = requests.get(url, params=params, headers=headers).json()['documents']
     
-    return places
+class Coord2address():
+    url = "https://dapi.kakao.com/v2/local/geo/coord2address.json"
+    headers = {"Authorization": "60f67244349d7ae054b6216815c8431a"}
+        
+app = FastAPI()
 
 # Data list for both front and back ends
-def infoLocation(places):
-    axis_x = []
-    axis_y = []
-    place_name = []
-    address = []
-    place_url = []
-    place_ID = []
-        
-    axis_x.append(float(places['axis_x']))
-    axis_y.append(float(places['axis_y']))
-    place_name.append(places['place_name'])
-    address.append(places['address'])
-    place_url.append(places['place_url'])
-    place_ID.append(places[id])
-        
-    info_arr = np.array([place_ID, place_name, axis_x, axis_y, address, place_url]).T
-    dataframe = pd.DataFrame(info_arr, columns = ['place_ID', 'place_name', 'axis_x', 'axis_y', 'address', 'place_url'])
+@app.get("/maps/{place_name}")
+async def request_coord2address(place_name: str):
+    places = requests.get(Coord2address.url, headers=Coord2address.headers).json()['documents']
+    return places
 
-    return dataframe
+@app.get("/maps/{place_name}")
+async def request_keyword(place_name: str):
+    places = requests.get(Keyword.url, headers=Keyword.headers, y=Centroid.axis_y, x=Centroid.axis_x, 
+                          radius=2000, category_group_code='SW8').json()['documents']
+    return places
 
-# Create data lists for multiple locations
-def makeDatalist(place_name):
-    dataframe = None
-    
-    for place in place_name:
-        p_name = requestLocation(place)
-        p_info = infoLocation(p_name)
-        
-        if dataframe is None:
-            dataframe = p_info
-        elif p_info is None:
-            continue
-        else:
-            dataframe = pd.concat([dataframe, p_info], join = 'outer', ignore_index = True)
-    
-    return dataframe
+
