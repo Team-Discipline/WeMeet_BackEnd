@@ -4,20 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dc18796-1334-4c3b-8f2e-a78d824f1890" name="Changes" comment="answer + question + err 해결" />
+    <list default="true" id="2ba8ab50-03ed-4216-8fa6-b293c66b4430" name="Changes" comment="subwayStation 기능 구현" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2U36m8n9hx3oCnsTv7LBj2bOWoL" />
+  <component name="ProjectId" id="2UBwwiF3qWgU4sUkDSScGzZGsBy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,40 +32,41 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/hamhyeongbum/school/discipline/WeMeet_BackEnd&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/subway_station" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4dc18796-1334-4c3b-8f2e-a78d824f1890" name="Changes" comment="" />
-      <created>1692156073067</created>
+      <changelist id="2ba8ab50-03ed-4216-8fa6-b293c66b4430" name="Changes" comment="" />
+      <created>1692426522754</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1692156073067</updated>
-      <workItem from="1692156074454" duration="2374000" />
-      <workItem from="1692159110553" duration="2000" />
-      <workItem from="1692159121136" duration="10000" />
-      <workItem from="1692159145966" duration="2128000" />
-      <workItem from="1692246065404" duration="209000" />
+      <updated>1692426522754</updated>
+      <workItem from="1692426524037" duration="83000" />
+      <workItem from="1692596767214" duration="5410000" />
+      <workItem from="1692761238610" duration="333000" />
     </task>
-    <task id="LOCAL-00001" summary="answer + question + err 해결">
-      <created>1692158805676</created>
+    <task id="LOCAL-00001" summary=".">
+      <created>1692426539204</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1692158805676</updated>
+      <updated>1692426539204</updated>
     </task>
-    <task id="LOCAL-00002" summary="answer + question + err 해결">
-      <created>1692245802436</created>
+    <task id="LOCAL-00002" summary="subwayStation 기능 구현">
+      <created>1692595068275</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1692245802436</updated>
+      <updated>1692595068276</updated>
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
@@ -79,7 +85,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="develop" />
+                        <option value="origin/develop" />
                       </list>
                     </value>
                   </entry>
@@ -92,7 +98,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="answer + question + err 해결" />
-    <option name="LAST_COMMIT_MESSAGE" value="answer + question + err 해결" />
+    <MESSAGE value="." />
+    <MESSAGE value="subwayStation 기능 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="subwayStation 기능 구현" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/WeMeet_BackEnd$main.coverage" NAME="main Coverage Results" MODIFIED="1692596752439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

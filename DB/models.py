@@ -1,5 +1,5 @@
 
-from sqlalchemy import Boolean, Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Boolean, Column, Integer, String, Text, DateTime, ForeignKey, Float
 from sqlalchemy.orm import relationship
 
 from DB.database import Base, engine
@@ -35,8 +35,8 @@ class Place(Base):
     __tablename__ = "places"
 
     place_name = Column(String)
-    # axis_x = Column(float)
-    # axis_y = Column(float)
+    axis_x = Column(Float)
+    axis_y = Column(Float)
     address = Column(String)
     place_url = Column(String)
     place_ID = Column(Integer, primary_key=True, index=True)
