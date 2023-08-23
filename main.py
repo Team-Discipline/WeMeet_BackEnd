@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from starlette.middleware.cors import CORSMiddleware
 
 from Query import Kakaomap
 from answer import answer_router
@@ -9,6 +10,25 @@ from question import question_router
 app = FastAPI()
 app.include_router(question_router.router)
 app.include_router(answer_router.router)
+
+
+origins = [
+    "http://localhost:3000",  # 프론트엔드 주소
+    "http://127.0.0.1:3000",  # 프론트엔드 주소
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get("/")
+async def read_root():
+    return {"message": "Hello, World"}
 
 
 @app.get("/maps/{place_name}")
