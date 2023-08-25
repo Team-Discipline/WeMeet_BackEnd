@@ -16,3 +16,8 @@ SQLAlchemy==2.0.19
 starlette==0.27.0
 typing_extensions==4.7.1
 Werkzeug==2.3.6
+
+uvicorn~=0.23.2
+numpy~=1.25.2
+jose~=1.0.0
+passlib~=1.7.4
