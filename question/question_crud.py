@@ -2,14 +2,13 @@ from datetime import datetime
 
 from sqlalchemy.orm import Session
 
-from question.question_schema import Question, QuestionCreate
+from DB.models import Question
+from question.question_schema import QuestionCreate
 
 
-def get_question_list(db: Session, skip: int = 0, limit: int = 10):
-    _question_list = db.query(Question).order_by(Question.create_date.desc())
-    total = _question_list.count()
-    question_list = _question_list.offset(skip).limit(limit).all()
-    return total, question_list
+def get_question_list(db: Session):
+    question_list = db.query(Question).order_by(Question.create_date.desc()).all()
+    return question_list
 
 
 def get_question(db: Session, question_id: int):

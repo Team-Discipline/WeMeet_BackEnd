@@ -21,3 +21,4 @@ uvicorn~=0.23.2
 numpy~=1.25.2
 jose~=1.0.0
 passlib~=1.7.4
+requests~=2.31.0

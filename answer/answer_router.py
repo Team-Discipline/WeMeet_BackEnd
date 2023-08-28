@@ -4,10 +4,11 @@ from starlette import status
 
 from DB.database import get_db
 from answer import answer_schema, answer_crud
+
 from question import question_crud
 
 router = APIRouter(
-    prefix="/api/answer",
+    prefix="/answer",
 )
 
 
