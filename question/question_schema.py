@@ -10,13 +10,13 @@ class Question(BaseModel):
     subject: str
     content: str
     create_date: datetime
-    answers: list[Answer] = []
+    answers: None | list[Answer] = []
 
     class Config:
         from_attributes = True
 
 
-class QuestionCreate(Question):
+class QuestionCreate(BaseModel):
     subject: str
     content: str
 
