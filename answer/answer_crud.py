@@ -2,8 +2,8 @@ from datetime import datetime
 
 from sqlalchemy.orm import Session
 
-from DB.models import Question
-from answer.answer_schema import AnswerCreate, Answer
+from DB.models import Question, Answer
+from answer.answer_schema import AnswerCreate
 
 
 def create_answer(db: Session, question: Question, answer_create: AnswerCreate):
@@ -12,3 +12,5 @@ def create_answer(db: Session, question: Question, answer_create: AnswerCreate):
                        create_date=datetime.now())
     db.add(db_answer)
     db.commit()
+
+

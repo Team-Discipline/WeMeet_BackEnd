@@ -2,15 +2,43 @@ from typing import List
 
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
+from starlette.middleware.cors import CORSMiddleware
 
-import crud
-import models
-import schemas
-from database import engine, get_db
+import requestmap
+from DB import models, schemas, crud
+from DB.database import SessionLocal, engine, get_db
+from answer import answer_router
+from question import question_router
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.include_router(question_router.router)
+app.include_router(answer_router.router)
+app.include_router(requestmap.router)
+
+# CORS 설정
+origins = [
+    "http://localhost",
+    "http://localhost:8000",
+    "http://127.0.0.1",
+    "http://127.0.0.1:8000",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get("/")
+def hello():
+    return {"message": "hello"}
 
 
 @app.post("/users/", response_model=schemas.User)

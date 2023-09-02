@@ -1,25 +1,11 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 
-
 REST_API_KEY = "60f67244349d7ae054b6216815c8431a"
-app = FastAPI()
 
-# CORS 설정
-origins = [
-    "http://localhost",
-    "http://localhost:8000",
-    "http://127.0.0.1",
-    "http://127.0.0.1:8000",
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+router = APIRouter(
+    prefix="/requestMap",
 )
 
 # FE에서 사용자가 입력한 주소들을 query에 콤마로 구분하여 입력
@@ -175,9 +161,11 @@ app.add_middleware(
 
 
 """
+
+
 # /average_coordinates/ 엔드포인트에서 한 번에 지하철 역 정보까지 처리함
 
-@app.get("/average_coordinates/")
+@router.get("/average_coordinates/")
 async def average_coordinates(queries: str):
     url = "https://dapi.kakao.com/v2/local/search/address.json"
     subway_url = "https://dapi.kakao.com/v2/local/search/keyword.json"
@@ -197,7 +185,7 @@ async def average_coordinates(queries: str):
         params = {
             "query": query
         }
-        
+
         # 입력된 주소로 Kakao API에 요청
         response = requests.get(url, headers=headers, params=params)
 
@@ -209,11 +197,11 @@ async def average_coordinates(queries: str):
                 total_y += y
                 total_x += x
                 count += 1
-    
+
     if count > 0:
         average_y = total_y / count
         average_x = total_x / count
-        
+
         # 요청 후 계산된 average_y, average_x를 바탕으로 반경 1.5km 내의 지하철 역 요청
         subway_params = {
             "y": average_y,
@@ -221,9 +209,9 @@ async def average_coordinates(queries: str):
             "radius": radius,
             "query": "지하철역"
         }
-        
+
         subway_response = requests.get(subway_url, headers=headers, params=subway_params)
-        
+
         if subway_response.status_code == 200:
             subway_data = subway_response.json()
             if "documents" in subway_data and len(subway_data["documents"]) > 0:
